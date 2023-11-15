@@ -20,14 +20,11 @@ class HomeViewModel(private val searchRepository: SearchRepository = SearchRepos
     private val _imageDocuments = MutableLiveData<List<ImageDocumentDto>>()
     val imageDocuments: LiveData<List<ImageDocumentDto>> = _imageDocuments
 
-    fun reqGetSummary(wordSearch: String?) {
+    fun reqImageSearch(wordSearch: String?) {
 
         CoroutineScope(Dispatchers.IO).launch {
-            when (val result = searchRepository.getImageSearch(page = 1, size = 10, query = wordSearch, sort = null)) {
+            when (val result = searchRepository.getImageSearch(page = 1, size = 20, query = wordSearch, sort = null)) {
                 is ResponseWrapper.Success -> {
-                    Timber.i(">>>>>>>>>>> ")
-                    Timber.i(">>>>>>>>>>> ${result.body}")
-                    Timber.i(">>>>>>>>>>> ")
                     result.body.documents?.let { _documents ->
                         _imageDocuments.postValue(_documents)
                     }

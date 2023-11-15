@@ -6,33 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.HomeFragment">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/etSearch"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="28dp"
-        android:hint="검색할 단어를 입력해주세요."
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!--    <com.google.android.material.textfield.TextInputEditText-->
+    <!--        android:id="@+id/etSearch"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginHorizontal="20dp"-->
+    <!--        android:layout_marginTop="28dp"-->
+    <!--        android:hint="검색할 단어를 입력해주세요."-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-    <Space
-        android:id="@+id/space"
-        android:layout_width="0dp"
-        android:layout_height="28dp"
-        app:layout_constraintEnd_toEndOf="@id/etSearch"
-        app:layout_constraintStart_toStartOf="@id/etSearch"
-        app:layout_constraintTop_toBottomOf="@id/etSearch" />
+    <!--    <Space-->
+    <!--        android:id="@+id/space"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="28dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="@id/etSearch"-->
+    <!--        app:layout_constraintStart_toStartOf="@id/etSearch"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/etSearch" />-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvData"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="20dp"
+        android:layout_margin="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/space" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
