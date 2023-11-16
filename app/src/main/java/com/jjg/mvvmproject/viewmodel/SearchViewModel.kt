@@ -18,12 +18,13 @@ import kotlinx.coroutines.launch
 
 class SearchViewModel(private val searchRepository: SearchRepository = SearchRepository()) : ViewModel() {
     private var _webDocuments = MutableLiveData<Flow<PagingData<WebDocumentDto>>>()
-    val webDocuments: LiveData<Flow<PagingData<WebDocumentDto>>> = _webDocuments
+    val webDocuments: LiveData<Flow<PagingData<WebDocumentDto>>> get() = _webDocuments
 
     fun reqWebSearch(wordSearch: String) {
 
         CoroutineScope(Dispatchers.IO).launch {
             val pageSize = 20
+
             _webDocuments.postValue(Pager(PagingConfig(pageSize = pageSize)) {
                 SearchPagingSource(searchRepository = searchRepository, query = wordSearch, size = pageSize)
             }.flow.cachedIn(viewModelScope))

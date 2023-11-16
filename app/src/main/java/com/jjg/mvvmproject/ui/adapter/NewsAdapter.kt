@@ -6,9 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jjg.mvvmproject.databinding.ItemNewsBinding
 import com.jjg.mvvmproject.repository.remote.models.ImageDocumentDto
 import com.jjg.mvvmproject.ui.adapter.viewholder.NewsViewHolder
-import timber.log.Timber
 
-class NewsAdapter(private val list: MutableList<ImageDocumentDto>) : RecyclerView.Adapter<NewsViewHolder>() {
+class NewsAdapter(private val list: MutableList<ImageDocumentDto>, private val onClick: (ImageDocumentDto) -> Unit) : RecyclerView.Adapter<NewsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         return NewsViewHolder(ItemNewsBinding.inflate(LayoutInflater.from(parent.context), parent, false))
@@ -16,7 +15,7 @@ class NewsAdapter(private val list: MutableList<ImageDocumentDto>) : RecyclerVie
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         val item = list[position]
-        holder.setUp(item)
+        holder.setUp(item, onClick)
     }
 
     override fun getItemCount(): Int {

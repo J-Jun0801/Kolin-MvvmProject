@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.jjg.mvvmproject.ui.fragments.NotificationsFragment"
+        android:name="com.jjg.mvvmproject.ui.fragments.RecentFragment"
         android:label="@string/title_recent"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_recent" />
 </navigation>

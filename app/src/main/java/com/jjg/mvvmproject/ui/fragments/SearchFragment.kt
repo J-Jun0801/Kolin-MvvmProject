@@ -18,6 +18,7 @@ import com.jjg.mvvmproject.databinding.FragmentSearchBinding
 import com.jjg.mvvmproject.extension.hideKeypad
 import com.jjg.mvvmproject.ui.adapter.NewsAdapter
 import com.jjg.mvvmproject.ui.adapter.SearchAdapter
+import com.jjg.mvvmproject.viewmodel.RecentViewModel
 import com.jjg.mvvmproject.viewmodel.SearchViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -58,14 +59,20 @@ class SearchFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         initialize()
+        setUpObserver()
     }
 
     private fun initialize() {
         context?.let { _context ->
-            binding.rvSearch.layoutManager = LinearLayoutManager(_context)
-            binding.rvSearch.removeItemDecoration(decoration)
-            binding.rvSearch.addItemDecoration(decoration)
-            binding.rvSearch.adapter = SearchAdapter()
+            binding.rvSearch.apply {
+                layoutManager = LinearLayoutManager(_context)
+                removeItemDecoration(decoration)
+                addItemDecoration(decoration)
+                adapter = SearchAdapter(onClick = { _webDocumentDto ->
+                    val recentViewModel = ViewModelProvider(findNavController().getViewModelStoreOwner(R.id.mobile_navigation))[RecentViewModel::class.java]
+                    recentViewModel.addRecentItem(_webDocumentDto)
+                })
+            }
         }
 
         binding.etSearch.setOnEditorActionListener { _, actionId, _ ->
@@ -81,7 +88,9 @@ class SearchFragment : Fragment() {
             }
             false
         }
+    }
 
+    private fun setUpObserver() {
         searchViewModel.webDocuments.observe(this) { _webDocuments ->
             CoroutineScope(Dispatchers.Main).launch {
                 _webDocuments.collectLatest { pagingData ->

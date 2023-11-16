@@ -3,17 +3,19 @@ package com.jjg.mvvmproject.ui.adapter.viewholder
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.jjg.mvvmproject.databinding.ItemNewsBinding
+import com.jjg.mvvmproject.databinding.ItemRecentImageBinding
 import com.jjg.mvvmproject.repository.remote.models.ImageDocumentDto
+import com.jjg.mvvmproject.viewmodel.models.RecentModel
 
-class NewsViewHolder(private val view: ItemNewsBinding) : RecyclerView.ViewHolder(view.root) {
+class RecentImageViewHolder(private val view: ItemRecentImageBinding) : RecyclerView.ViewHolder(view.root) {
 
-    fun setUp(item: ImageDocumentDto, onClick: (ImageDocumentDto) -> Unit) {
+    fun setUp(item: RecentModel, onClick: (RecentModel) -> Unit) {
 
         Glide.with(view.root)
             .load(item.imageUrl)
             .into(view.ivImage)
 
-        view.tvTitle.text = item.displaySiteName
+        view.tvTitle.text = item.title
 
         view.root.setOnClickListener {
             onClick(item)

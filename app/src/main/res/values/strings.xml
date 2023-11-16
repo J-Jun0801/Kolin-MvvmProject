@@ -6,5 +6,6 @@
 
     <string name="label_search">Search Word</string>
     <string name="guide_empty_word">enter the word you want to search</string>
+    <string name="guide_no_recent_viewed">no recently viewed</string>
 
 </resources>

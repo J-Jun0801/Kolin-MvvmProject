@@ -4,16 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
-import com.jjg.mvvmproject.databinding.ItemNewsBinding
 import com.jjg.mvvmproject.databinding.ItemSerarchBinding
-import com.jjg.mvvmproject.repository.remote.models.ImageDocumentDto
 import com.jjg.mvvmproject.repository.remote.models.WebDocumentDto
-import com.jjg.mvvmproject.ui.adapter.viewholder.NewsViewHolder
 import com.jjg.mvvmproject.ui.adapter.viewholder.SearchViewHolder
-import timber.log.Timber
 
 class SearchAdapter(
+    private val onClick : (WebDocumentDto)->Unit,
     diffCallback: DiffUtil.ItemCallback<WebDocumentDto> = object : DiffUtil.ItemCallback<WebDocumentDto>() {
         override fun areItemsTheSame(oldItem: WebDocumentDto, newItem: WebDocumentDto): Boolean {
             return oldItem == newItem
@@ -30,7 +26,7 @@ class SearchAdapter(
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         getItem(position)?.let { _webDocumentDto ->
-            holder.setUp(_webDocumentDto)
+            holder.setUp(_webDocumentDto, onClick)
         }
     }
 }

@@ -15,7 +15,7 @@ class NewsViewModel(private val searchRepository: SearchRepository = SearchRepos
     val networkErrorMsg: LiveData<String> = _networkErrorMsg
 
     private val _imageDocuments = MutableLiveData<List<ImageDocumentDto>>()
-    val imageDocuments: LiveData<List<ImageDocumentDto>> = _imageDocuments
+    val imageDocuments: LiveData<List<ImageDocumentDto>> get() = _imageDocuments
 
     fun reqImageSearch(wordSearch: String?) {
 

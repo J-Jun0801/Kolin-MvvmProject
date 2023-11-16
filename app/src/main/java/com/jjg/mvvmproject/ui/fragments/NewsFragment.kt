@@ -13,8 +13,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.jjg.mvvmproject.R
 import com.jjg.mvvmproject.databinding.FragmentNewsBinding
+import com.jjg.mvvmproject.repository.remote.models.ImageDocumentDto
 import com.jjg.mvvmproject.ui.adapter.NewsAdapter
 import com.jjg.mvvmproject.viewmodel.NewsViewModel
+import com.jjg.mvvmproject.viewmodel.RecentViewModel
 import kotlin.math.roundToInt
 
 class NewsFragment : Fragment() {
@@ -67,25 +69,33 @@ class NewsFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         initialize()
-
+        setUpObserver()
         newsViewModel.reqImageSearch(wordSearch = "한국시리즈 야구 우승")
-        newsViewModel.imageDocuments.observe(this) {
-            val adapter = binding.rvNews.adapter as NewsAdapter
-            adapter.addItems(it)
-        }
-
-        newsViewModel.networkErrorMsg.observe(this)
-        {
-            Snackbar.make(_binding!!.root, it, Snackbar.LENGTH_SHORT).show()
-        }
     }
 
     private fun initialize() {
         context?.let { _context ->
-            binding.rvNews.layoutManager = GridLayoutManager(_context, 2)
-            binding.rvNews.adapter = NewsAdapter(list = mutableListOf())
-            binding.rvNews.removeItemDecoration(gridItemDecoration)
-            binding.rvNews.addItemDecoration(gridItemDecoration)
+            binding.rvNews.apply {
+                layoutManager = GridLayoutManager(_context, 2)
+                adapter = NewsAdapter(list = mutableListOf(), onClick = { _imageDocument ->
+                    val recentViewModel = ViewModelProvider(findNavController().getViewModelStoreOwner(R.id.mobile_navigation))[RecentViewModel::class.java]
+                    recentViewModel.addRecentItem(_imageDocument)
+                })
+                removeItemDecoration(gridItemDecoration)
+                addItemDecoration(gridItemDecoration)
+            }
+        }
+    }
+
+    private fun setUpObserver() {
+        newsViewModel.imageDocuments.observe(this) { _imageDocuments ->
+            (binding.rvNews.adapter as NewsAdapter).apply {
+                addItems(_imageDocuments)
+            }
+        }
+
+        newsViewModel.networkErrorMsg.observe(this) {
+            Snackbar.make(_binding!!.root, it, Snackbar.LENGTH_SHORT).show()
         }
     }
 
