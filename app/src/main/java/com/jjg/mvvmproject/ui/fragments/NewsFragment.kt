@@ -1,29 +1,25 @@
 package com.jjg.mvvmproject.ui.fragments
 
-import android.annotation.SuppressLint
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.jjg.mvvmproject.R
-import com.jjg.mvvmproject.databinding.FragmentHomeBinding
+import com.jjg.mvvmproject.databinding.FragmentNewsBinding
 import com.jjg.mvvmproject.ui.adapter.NewsAdapter
-import com.jjg.mvvmproject.viewmodel.HomeViewModel
-import timber.log.Timber
+import com.jjg.mvvmproject.viewmodel.NewsViewModel
 import kotlin.math.roundToInt
 
-class HomeFragment : Fragment() {
+class NewsFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentNewsBinding? = null
     private val binding get() = _binding!!
 
     private val gridItemDecoration = object : RecyclerView.ItemDecoration() {
@@ -59,13 +55,12 @@ class HomeFragment : Fragment() {
         }
     }
 
-
-    private val homeViewModel by lazy {
-        ViewModelProvider(findNavController().getViewModelStoreOwner(R.id.mobile_navigation))[HomeViewModel::class.java]
+    private val newsViewModel by lazy {
+        ViewModelProvider(findNavController().getViewModelStoreOwner(R.id.mobile_navigation))[NewsViewModel::class.java]
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentNewsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -73,14 +68,13 @@ class HomeFragment : Fragment() {
         super.onStart()
         initialize()
 
-        homeViewModel.reqImageSearch(wordSearch = "한국시리즈 야구 우승")
-        homeViewModel.imageDocuments.observe(this) {
-            val adapter = binding.rvData.adapter as NewsAdapter
+        newsViewModel.reqImageSearch(wordSearch = "한국시리즈 야구 우승")
+        newsViewModel.imageDocuments.observe(this) {
+            val adapter = binding.rvNews.adapter as NewsAdapter
             adapter.addItems(it)
         }
 
-
-        homeViewModel.networkErrorMsg.observe(this)
+        newsViewModel.networkErrorMsg.observe(this)
         {
             Snackbar.make(_binding!!.root, it, Snackbar.LENGTH_SHORT).show()
         }
@@ -88,10 +82,10 @@ class HomeFragment : Fragment() {
 
     private fun initialize() {
         context?.let { _context ->
-            binding.rvData.layoutManager = GridLayoutManager(_context, 2)
-            binding.rvData.adapter = NewsAdapter(list = mutableListOf())
-            binding.rvData.removeItemDecoration(gridItemDecoration)
-            binding.rvData.addItemDecoration(gridItemDecoration)
+            binding.rvNews.layoutManager = GridLayoutManager(_context, 2)
+            binding.rvNews.adapter = NewsAdapter(list = mutableListOf())
+            binding.rvNews.removeItemDecoration(gridItemDecoration)
+            binding.rvNews.addItemDecoration(gridItemDecoration)
         }
     }
 

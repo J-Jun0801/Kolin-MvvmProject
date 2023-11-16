@@ -7,15 +7,15 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.jjg.mvvmproject.ui.fragments.HomeFragment"
+        android:name="com.jjg.mvvmproject.ui.fragments.NewsFragment"
         android:label="@string/title_news"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_news" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.jjg.mvvmproject.ui.fragments.DashboardFragment"
+        android:name="com.jjg.mvvmproject.ui.fragments.SearchFragment"
         android:label="@string/title_search"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_search" />
 
     <fragment
         android:id="@+id/navigation_notifications"

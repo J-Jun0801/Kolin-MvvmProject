@@ -15,7 +15,6 @@ class NewsAdapter(private val list: MutableList<ImageDocumentDto>) : RecyclerVie
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
-        Timber.e("CustomerReviewAdapter onBindViewHolder position: $position")
         val item = list[position]
         holder.setUp(item)
     }

@@ -6,14 +6,11 @@ import androidx.lifecycle.ViewModel
 import com.jjg.mvvmproject.network.ResponseWrapper
 import com.jjg.mvvmproject.repository.SearchRepository
 import com.jjg.mvvmproject.repository.remote.models.ImageDocumentDto
-import com.jjg.mvvmproject.repository.remote.models.WebDocumentDto
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
-class HomeViewModel(private val searchRepository: SearchRepository = SearchRepository()) : ViewModel() {
+class NewsViewModel(private val searchRepository: SearchRepository = SearchRepository()) : ViewModel() {
     private val _networkErrorMsg = MutableLiveData<String>()
     val networkErrorMsg: LiveData<String> = _networkErrorMsg
 
