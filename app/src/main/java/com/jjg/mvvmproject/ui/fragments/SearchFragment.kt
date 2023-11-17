@@ -9,22 +9,22 @@ import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import com.jjg.mvvmproject.NavMainDirections
 import com.jjg.mvvmproject.R
 import com.jjg.mvvmproject.databinding.FragmentSearchBinding
 import com.jjg.mvvmproject.extension.hideKeypad
-import com.jjg.mvvmproject.ui.adapter.NewsAdapter
 import com.jjg.mvvmproject.ui.adapter.SearchAdapter
 import com.jjg.mvvmproject.viewmodel.RecentViewModel
 import com.jjg.mvvmproject.viewmodel.SearchViewModel
+import com.jjg.mvvmproject.viewmodel.models.RecentModel
+import com.jjg.mvvmproject.viewmodel.models.RecentViewType
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import kotlin.math.roundToInt
 
 class SearchFragment : Fragment() {
@@ -33,7 +33,7 @@ class SearchFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val searchViewModel by lazy {
-        ViewModelProvider(findNavController().getViewModelStoreOwner(R.id.mobile_navigation))[SearchViewModel::class.java]
+        ViewModelProvider(findNavController().getViewModelStoreOwner(R.id.nav_main))[SearchViewModel::class.java]
     }
 
     private val decoration = object : RecyclerView.ItemDecoration() {
@@ -69,8 +69,15 @@ class SearchFragment : Fragment() {
                 removeItemDecoration(decoration)
                 addItemDecoration(decoration)
                 adapter = SearchAdapter(onClick = { _webDocumentDto ->
-                    val recentViewModel = ViewModelProvider(findNavController().getViewModelStoreOwner(R.id.mobile_navigation))[RecentViewModel::class.java]
-                    recentViewModel.addRecentItem(_webDocumentDto)
+                    val recentModel = RecentModel(
+                        type = RecentViewType.Text,
+                        imageUrl = null,
+                        docUrl = null,
+                        title = _webDocumentDto.title,
+                        contents = _webDocumentDto.contents
+                    )
+
+                    findNavController().navigate(NavMainDirections.actionToNavDetail(recentModel = recentModel))
                 })
             }
         }

@@ -1,6 +1,8 @@
 package com.jjg.mvvmproject.ui.fragments
 
+import android.content.Intent
 import android.graphics.Rect
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,12 +13,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import com.jjg.mvvmproject.NavMainDirections
 import com.jjg.mvvmproject.R
 import com.jjg.mvvmproject.databinding.FragmentNewsBinding
-import com.jjg.mvvmproject.repository.remote.models.ImageDocumentDto
 import com.jjg.mvvmproject.ui.adapter.NewsAdapter
 import com.jjg.mvvmproject.viewmodel.NewsViewModel
 import com.jjg.mvvmproject.viewmodel.RecentViewModel
+import com.jjg.mvvmproject.viewmodel.models.RecentModel
+import com.jjg.mvvmproject.viewmodel.models.RecentViewType
 import kotlin.math.roundToInt
 
 class NewsFragment : Fragment() {
@@ -58,7 +62,7 @@ class NewsFragment : Fragment() {
     }
 
     private val newsViewModel by lazy {
-        ViewModelProvider(findNavController().getViewModelStoreOwner(R.id.mobile_navigation))[NewsViewModel::class.java]
+        ViewModelProvider(findNavController().getViewModelStoreOwner(R.id.nav_main))[NewsViewModel::class.java]
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -78,8 +82,10 @@ class NewsFragment : Fragment() {
             binding.rvNews.apply {
                 layoutManager = GridLayoutManager(_context, 2)
                 adapter = NewsAdapter(list = mutableListOf(), onClick = { _imageDocument ->
-                    val recentViewModel = ViewModelProvider(findNavController().getViewModelStoreOwner(R.id.mobile_navigation))[RecentViewModel::class.java]
+                    val recentViewModel = ViewModelProvider(findNavController().getViewModelStoreOwner(R.id.nav_main))[RecentViewModel::class.java]
                     recentViewModel.addRecentItem(_imageDocument)
+
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(_imageDocument.docUrl)))
                 })
                 removeItemDecoration(gridItemDecoration)
                 addItemDecoration(gridItemDecoration)

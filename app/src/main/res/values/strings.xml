@@ -2,7 +2,8 @@
     <string name="app_name">MvvmProject</string>
     <string name="title_news">News</string>
     <string name="title_search">Search</string>
-    <string name="title_recent">recent</string>
+    <string name="title_recent">Recent</string>
+    <string name="title_detail_content">DetailContent</string>
 
     <string name="label_search">Search Word</string>
     <string name="guide_empty_word">enter the word you want to search</string>

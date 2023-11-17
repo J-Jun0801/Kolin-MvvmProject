@@ -1,22 +1,23 @@
 package com.jjg.mvvmproject.ui.fragments
 
+import android.content.Intent
 import android.graphics.Rect
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.asFlow
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.jjg.mvvmproject.NavMainDirections
 import com.jjg.mvvmproject.R
 import com.jjg.mvvmproject.databinding.FragmentRecentBinding
-import com.jjg.mvvmproject.ui.adapter.NewsAdapter
 import com.jjg.mvvmproject.ui.adapter.RecentAdapter
 import com.jjg.mvvmproject.viewmodel.RecentViewModel
-import kotlinx.coroutines.flow.toList
+import com.jjg.mvvmproject.viewmodel.models.RecentViewType
 import kotlin.math.roundToInt
 
 class RecentFragment : Fragment() {
@@ -25,7 +26,7 @@ class RecentFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val recentViewModel by lazy {
-        ViewModelProvider(findNavController().getViewModelStoreOwner(R.id.mobile_navigation))[RecentViewModel::class.java]
+        ViewModelProvider(findNavController().getViewModelStoreOwner(R.id.nav_main))[RecentViewModel::class.java]
     }
 
     private val gridItemDecoration = object : RecyclerView.ItemDecoration() {
@@ -71,8 +72,12 @@ class RecentFragment : Fragment() {
         context?.let { _context ->
             binding.rvRecent.apply {
                 layoutManager = GridLayoutManager(_context, 2)
-                adapter = RecentAdapter(list = mutableListOf(), onClick = { aa ->
-
+                adapter = RecentAdapter(list = mutableListOf(), onClick = { _recentModel ->
+                    if(_recentModel.type == RecentViewType.Text){
+                        findNavController().navigate(NavMainDirections.actionToNavDetail(recentModel = _recentModel))
+                    }else{
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(_recentModel.docUrl)))
+                    }
                 })
                 removeItemDecoration(gridItemDecoration)
                 addItemDecoration(gridItemDecoration)

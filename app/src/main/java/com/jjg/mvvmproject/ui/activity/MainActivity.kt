@@ -1,6 +1,7 @@
 package com.jjg.mvvmproject.ui.activity
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -8,6 +9,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.jjg.mvvmproject.R
 import com.jjg.mvvmproject.databinding.ActivityMainBinding
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,10 +21,23 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications))
+        val navController = findNavController(R.id.navHostFragment)
 
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        binding.navView.setupWithNavController(navController)
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            controller.currentDestination?.id.let { _destinationId ->
+                when (_destinationId) {
+                    R.id.newsFragment,
+                    R.id.searchFragment,
+                    R.id.recentFragment -> {
+                        binding.bottomNavigationView.visibility = View.VISIBLE
+                    }
+                    else -> {
+                        binding.bottomNavigationView.visibility = View.GONE
+                    }
+                }
+            }
+        }
+
+        binding.bottomNavigationView.setupWithNavController(navController)
     }
 }

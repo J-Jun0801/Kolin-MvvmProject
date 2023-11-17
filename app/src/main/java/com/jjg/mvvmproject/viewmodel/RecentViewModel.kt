@@ -22,6 +22,7 @@ class RecentViewModel : ViewModel() {
         val recentModel = RecentModel(
             type = RecentViewType.Image,
             imageUrl = imageDocumentDto.imageUrl,
+            docUrl = imageDocumentDto.docUrl,
             title = imageDocumentDto.displaySiteName,
             contents = ""
         )
@@ -32,15 +33,8 @@ class RecentViewModel : ViewModel() {
         }
     }
 
-    fun addRecentItem(webDocumentDto: WebDocumentDto) {
+    fun addRecentItem(recentModel: RecentModel) {
         val deepCopyList = (_recentDocuments.value ?: mutableListOf()).toMutableList()
-
-        val recentModel = RecentModel(
-            type = RecentViewType.Text,
-            imageUrl = null,
-            title = webDocumentDto.title,
-            contents = webDocumentDto.contents
-        )
 
         if (!deepCopyList.contains(recentModel)) {
             deepCopyList.add(recentModel)
