@@ -13,14 +13,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import com.jjg.mvvmproject.NavMainDirections
 import com.jjg.mvvmproject.R
 import com.jjg.mvvmproject.databinding.FragmentNewsBinding
 import com.jjg.mvvmproject.ui.adapter.NewsAdapter
-import com.jjg.mvvmproject.viewmodel.NewsViewModel
-import com.jjg.mvvmproject.viewmodel.RecentViewModel
-import com.jjg.mvvmproject.viewmodel.models.RecentModel
-import com.jjg.mvvmproject.viewmodel.models.RecentViewType
+import com.jjg.mvvmproject.vm.NewsViewModel
+import com.jjg.mvvmproject.vm.RecentViewModel
 import kotlin.math.roundToInt
 
 class NewsFragment : Fragment() {

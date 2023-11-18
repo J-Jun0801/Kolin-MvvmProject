@@ -1,15 +1,9 @@
-package com.jjg.mvvmproject.viewmodel
+package com.jjg.mvvmproject.vm
 
 import androidx.lifecycle.*
 import com.jjg.mvvmproject.repository.remote.models.ImageDocumentDto
-import com.jjg.mvvmproject.repository.remote.models.WebDocumentDto
-import com.jjg.mvvmproject.viewmodel.models.RecentModel
-import com.jjg.mvvmproject.viewmodel.models.RecentViewType
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.launch
-import timber.log.Timber
+import com.jjg.mvvmproject.vm.models.RecentModel
+import com.jjg.mvvmproject.vm.models.RecentViewType
 
 class RecentViewModel : ViewModel() {
 

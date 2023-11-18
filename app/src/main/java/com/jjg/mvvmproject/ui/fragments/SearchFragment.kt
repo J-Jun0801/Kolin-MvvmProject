@@ -17,10 +17,9 @@ import com.jjg.mvvmproject.R
 import com.jjg.mvvmproject.databinding.FragmentSearchBinding
 import com.jjg.mvvmproject.extension.hideKeypad
 import com.jjg.mvvmproject.ui.adapter.SearchAdapter
-import com.jjg.mvvmproject.viewmodel.RecentViewModel
-import com.jjg.mvvmproject.viewmodel.SearchViewModel
-import com.jjg.mvvmproject.viewmodel.models.RecentModel
-import com.jjg.mvvmproject.viewmodel.models.RecentViewType
+import com.jjg.mvvmproject.vm.SearchViewModel
+import com.jjg.mvvmproject.vm.models.RecentModel
+import com.jjg.mvvmproject.vm.models.RecentViewType
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest

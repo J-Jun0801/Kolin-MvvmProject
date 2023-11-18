@@ -10,9 +10,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.jjg.mvvmproject.R
 import com.jjg.mvvmproject.databinding.FragmentDetailContentBinding
-import com.jjg.mvvmproject.viewmodel.DetailContentViewModel
-import com.jjg.mvvmproject.viewmodel.RecentViewModel
-import com.jjg.mvvmproject.viewmodel.models.RecentModel
+import com.jjg.mvvmproject.vm.DetailContentViewModel
+import com.jjg.mvvmproject.vm.RecentViewModel
+import com.jjg.mvvmproject.vm.models.RecentModel
 
 class DetailContentFragment : Fragment() {
 

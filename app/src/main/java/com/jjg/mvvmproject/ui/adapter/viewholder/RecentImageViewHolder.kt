@@ -2,10 +2,8 @@ package com.jjg.mvvmproject.ui.adapter.viewholder
 
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.jjg.mvvmproject.databinding.ItemNewsBinding
 import com.jjg.mvvmproject.databinding.ItemRecentImageBinding
-import com.jjg.mvvmproject.repository.remote.models.ImageDocumentDto
-import com.jjg.mvvmproject.viewmodel.models.RecentModel
+import com.jjg.mvvmproject.vm.models.RecentModel
 
 class RecentImageViewHolder(private val view: ItemRecentImageBinding) : RecyclerView.ViewHolder(view.root) {
 

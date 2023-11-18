@@ -1,4 +1,4 @@
-package com.jjg.mvvmproject.viewmodel
+package com.jjg.mvvmproject.vm
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

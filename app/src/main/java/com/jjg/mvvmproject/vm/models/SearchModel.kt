@@ -1,4 +1,4 @@
-package com.jjg.mvvmproject.viewmodel.models
+package com.jjg.mvvmproject.vm.models
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

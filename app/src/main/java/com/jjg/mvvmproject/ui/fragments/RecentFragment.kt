@@ -16,8 +16,8 @@ import com.jjg.mvvmproject.NavMainDirections
 import com.jjg.mvvmproject.R
 import com.jjg.mvvmproject.databinding.FragmentRecentBinding
 import com.jjg.mvvmproject.ui.adapter.RecentAdapter
-import com.jjg.mvvmproject.viewmodel.RecentViewModel
-import com.jjg.mvvmproject.viewmodel.models.RecentViewType
+import com.jjg.mvvmproject.vm.RecentViewModel
+import com.jjg.mvvmproject.vm.models.RecentViewType
 import kotlin.math.roundToInt
 
 class RecentFragment : Fragment() {

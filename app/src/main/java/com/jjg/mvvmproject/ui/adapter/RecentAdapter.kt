@@ -3,15 +3,12 @@ package com.jjg.mvvmproject.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.jjg.mvvmproject.databinding.ItemNewsBinding
 import com.jjg.mvvmproject.databinding.ItemRecentImageBinding
 import com.jjg.mvvmproject.databinding.ItemRecentTextBinding
-import com.jjg.mvvmproject.repository.remote.models.ImageDocumentDto
-import com.jjg.mvvmproject.ui.adapter.viewholder.NewsViewHolder
 import com.jjg.mvvmproject.ui.adapter.viewholder.RecentImageViewHolder
 import com.jjg.mvvmproject.ui.adapter.viewholder.RecentTextViewHolder
-import com.jjg.mvvmproject.viewmodel.models.RecentModel
-import com.jjg.mvvmproject.viewmodel.models.RecentViewType
+import com.jjg.mvvmproject.vm.models.RecentModel
+import com.jjg.mvvmproject.vm.models.RecentViewType
 
 class RecentAdapter(private val list: MutableList<RecentModel>, private val onClick: (RecentModel) -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

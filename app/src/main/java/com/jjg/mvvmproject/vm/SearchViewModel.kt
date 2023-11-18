@@ -1,4 +1,4 @@
-package com.jjg.mvvmproject.viewmodel
+package com.jjg.mvvmproject.vm
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,7 +10,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.jjg.mvvmproject.repository.SearchRepository
 import com.jjg.mvvmproject.repository.remote.models.WebDocumentDto
-import com.jjg.mvvmproject.viewmodel.pagingsource.SearchPagingSource
+import com.jjg.mvvmproject.vm.pagingsource.SearchPagingSource
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow

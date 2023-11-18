@@ -1,4 +1,4 @@
-package com.jjg.mvvmproject.viewmodel.pagingsource
+package com.jjg.mvvmproject.vm.pagingsource
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
