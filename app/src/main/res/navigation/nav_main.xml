@@ -30,6 +30,6 @@
         app:destination="@id/nav_detail">
         <argument
             android:name="recentModel"
-            app:argType="com.jjg.mvvmproject.viewmodel.models.RecentModel" />
+            app:argType="com.jjg.mvvmproject.vm.models.RecentModel" />
     </action>
 </navigation>
